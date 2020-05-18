@@ -1,9 +1,12 @@
 package js.customer.controller;
 
+import js.customer.entity.entity.Credit;
+import js.customer.entity.entity.Customer;
 import js.customer.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/customer")
@@ -12,5 +15,14 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    @PostMapping(value = "/createCustomer")
+    public int createCustomer(@RequestBody Customer customer){
+        return customerService.processCustomer(customer);
+    }
+
+    @GetMapping(value = "/getCustomers")
+    public Customer[] getCustomers(){
+        return customerService.getCustomers();
+    }
 
 }
