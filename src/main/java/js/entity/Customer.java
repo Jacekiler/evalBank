@@ -1,4 +1,4 @@
-package js.product.entity.entity;
+package js.entity;
 
 import javax.persistence.*;
 

@@ -1,6 +1,7 @@
 package js.product.repository;
 
-import js.product.entity.entity.Product;
+
+import js.product.entity.Product;
 
 public interface ProductDao {
 

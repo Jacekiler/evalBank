@@ -1,7 +1,6 @@
 package js.customer.controller;
 
-import js.customer.entity.entity.Credit;
-import js.customer.entity.entity.Customer;
+import js.customer.entity.Customer;
 import js.customer.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

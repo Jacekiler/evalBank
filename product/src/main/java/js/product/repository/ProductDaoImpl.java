@@ -1,6 +1,6 @@
 package js.product.repository;
 
-import js.product.entity.entity.Product;
+import js.product.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,4 @@
-package js.credit.entity;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+package js.entity;
 
 import javax.persistence.*;
 

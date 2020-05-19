@@ -1,11 +1,9 @@
-package js.credit.entity;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+package js.customer.entity;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "cu5")
+@Table(name = "cu6")
 public class Customer {
 
     @Id

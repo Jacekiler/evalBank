@@ -1,6 +1,6 @@
 package js.credit.repository;
 
-import js.credit.entity.Credit;
+import js.credit.model.entity.Credit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;

@@ -1,6 +1,8 @@
 package js.credit.repository;
 
-import js.credit.entity.Credit;
+
+
+import js.credit.model.entity.Credit;
 
 import java.util.List;
 

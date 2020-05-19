@@ -1,11 +1,16 @@
-package js.credit.entity;
+package js.credit.model.entity;
+
+import javax.validation.constraints.NotNull;
 
 public class CreditDetails {
 
+    @NotNull
     private Credit credit;
 
+    @NotNull
     private Customer customer;
 
+    @NotNull
     private Product product;
 
     public Credit getCredit() {

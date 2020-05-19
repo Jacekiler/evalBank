@@ -1,6 +1,6 @@
 package js.product.service;
 
-import js.product.entity.entity.Product;
+import js.product.entity.Product;
 import js.product.repository.ProductDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

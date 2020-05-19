@@ -1,9 +1,9 @@
-package js.customer.entity.entity;
+package js.product.entity;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "pr5")
+@Table(name = "pr6")
 public class Product {
 
     @Id

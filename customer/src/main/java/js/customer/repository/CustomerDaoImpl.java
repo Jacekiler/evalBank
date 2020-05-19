@@ -1,6 +1,6 @@
 package js.customer.repository;
 
-import js.customer.entity.entity.Customer;
+import js.customer.entity.Customer;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;

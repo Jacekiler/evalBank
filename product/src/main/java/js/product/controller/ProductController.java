@@ -1,6 +1,6 @@
 package js.product.controller;
 
-import js.product.entity.entity.Product;
+import js.product.entity.Product;
 import js.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

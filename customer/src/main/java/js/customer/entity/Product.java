@@ -1,12 +1,9 @@
-package js.credit.entity;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
+package js.customer.entity;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "pr5")
+@Table(name = "pr6")
 public class Product {
 
     @Id
