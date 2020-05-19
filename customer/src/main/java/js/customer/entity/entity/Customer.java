@@ -3,7 +3,7 @@ package js.customer.entity.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "cu4")
+@Table(name = "cu5")
 public class Customer {
 
     @Id
@@ -20,7 +20,18 @@ public class Customer {
     @Column
     private String pesel;
 
-    private Integer creditId;
+//    private Integer creditId;
+
+    @OneToOne
+    private Credit credit;
+
+    public Credit getCredit() {
+        return credit;
+    }
+
+    public void setCredit(Credit credit) {
+        this.credit = credit;
+    }
 
     public int getId() {
         return id;
@@ -53,12 +64,12 @@ public class Customer {
     public void setPesel(String pesel) {
         this.pesel = pesel;
     }
-
-    public Integer getCreditId() {
-        return creditId;
-    }
-
-    public void setCreditId(Integer creditId) {
-        this.creditId = creditId;
-    }
+//
+//    public Integer getCreditId() {
+//        return creditId;
+//    }
+//
+//    public void setCreditId(Integer creditId) {
+//        this.creditId = creditId;
+//    }
 }

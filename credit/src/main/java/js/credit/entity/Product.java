@@ -1,9 +1,12 @@
 package js.credit.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "pr4")
+@Table(name = "pr5")
 public class Product {
 
     @Id
@@ -14,7 +17,16 @@ public class Product {
     @Column
     private String productName;
 
-    private Integer creditId;
+    @OneToOne
+    private Credit credit;
+
+    public Credit getCredit() {
+        return credit;
+    }
+
+    public void setCredit(Credit credit) {
+        this.credit = credit;
+    }
 
     public int getId() {
         return id;
@@ -30,13 +42,5 @@ public class Product {
 
     public void setProductName(String productName) {
         this.productName = productName;
-    }
-
-    public Integer getCreditId() {
-        return creditId;
-    }
-
-    public void setCreditId(Integer creditId) {
-        this.creditId = creditId;
     }
 }

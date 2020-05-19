@@ -8,11 +8,6 @@ public class CreditDetails {
 
     private Product product;
 
-    public CreditDetails(Credit credit, Customer customer) {
-        this.credit = credit;
-        this.customer = customer;
-    }
-
     public Credit getCredit() {
         return credit;
     }

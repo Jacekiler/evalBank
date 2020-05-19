@@ -2,7 +2,6 @@ package js.credit.controller;
 
 import js.credit.entity.Credit;
 import js.credit.entity.CreditDetails;
-import js.credit.repository.CreditDao;
 import js.credit.service.CreditService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,8 +21,7 @@ public class CreditController {
     }
 
     @GetMapping(value = "/getCredits")
-    public List<CreditDetails> getCredits(){
+    public List<Credit> getCredits(){
         return creditService.getAllCredits();
     }
-
 }

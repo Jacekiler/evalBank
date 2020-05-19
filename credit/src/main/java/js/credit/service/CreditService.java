@@ -1,5 +1,10 @@
 package js.credit.service;
 
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.google.common.collect.Lists;
 import js.credit.entity.Credit;
 import js.credit.entity.CreditDetails;
@@ -21,8 +26,8 @@ public class CreditService {
     private static final String BASE_PRODUCT_URL = "http://localhost:8082/product/";
     private static final String CREATE_CUSTOMER_URL = BASE_CUSTOMER_URL + "createCustomer";
     private static final String CREATE_PRODUCT_URL = BASE_PRODUCT_URL + "createProduct";
-    private static final String GET_CUSTOMERS_URL = BASE_CUSTOMER_URL + "getCustomers";
-    private static final String GET_PRODUCTS_URL = BASE_PRODUCT_URL + "getProducts";
+//    private static final String GET_CUSTOMERS_URL = BASE_CUSTOMER_URL + "getCustomers";
+//    private static final String GET_PRODUCTS_URL = BASE_PRODUCT_URL + "getProducts";
 
     @Autowired
     private CreditDao creditDao;
@@ -41,52 +46,38 @@ public class CreditService {
 
     private Optional<Integer> createCustomerRequest(CreditDetails creditDetails){
         Customer customer = creditDetails.getCustomer();
-        customer.setCreditId(creditDetails.getCredit().getId());
+        if(customer == null){
+            return Optional.empty();
+        }
+        customer.setCredit(creditDetails.getCredit());
         ResponseEntity<Integer> customerResponse = restTemplate.postForEntity(CREATE_CUSTOMER_URL, customer, Integer.class);
         return Optional.ofNullable(customerResponse.getBody());
     }
 
     private Optional<Integer> createProductRequest(CreditDetails creditDetails){
         Product product = creditDetails.getProduct();
-        product.setCreditId(creditDetails.getCredit().getId());
+        if(product == null){
+            return Optional.empty();
+        }
+        product.setCredit(creditDetails.getCredit());
         ResponseEntity<Integer> productResponse = restTemplate.postForEntity(CREATE_PRODUCT_URL, product, Integer.class);
         return Optional.ofNullable(productResponse.getBody());
     }
 
-    public List<CreditDetails> getAllCredits(){
+    public List<Credit> getAllCredits() {
         List<Credit> credits = creditDao.getAll();
-        List<Customer> customers = getCustomers();
-        List<CreditDetails> creditDetails = aggregateCustomers(credits, customers);
-        List<Product> products = getProducts();
-        aggregateProducts(creditDetails, products);
-        return creditDetails;
+        return prepareResponse(credits);
     }
 
-    private List<Customer> getCustomers(){
-        ResponseEntity<Customer[]> responseEntity = restTemplate.getForEntity(GET_CUSTOMERS_URL, Customer[].class);
-        return Optional.ofNullable(responseEntity.getBody()).map(Arrays::asList)
-                .orElse(new ArrayList<>());
-    }
-
-    private List<CreditDetails> aggregateCustomers(List<Credit> credits, List<Customer> customers){
+    private List<Credit> prepareResponse(List<Credit> credits){
         return credits.stream()
-                .flatMap(credit -> customers.stream()
-                        .filter(customer -> customer.getCreditId() == credit.getId())
-                        .map(customer -> new CreditDetails(credit, customer)))
-                .collect(Collectors.toList());
+                .peek(credit -> {
+                    if(credit.getCustomer() != null) {
+                        credit.getCustomer().setCredit(null);
+                    }
+                    if(credit.getProduct() != null) {
+                        credit.getProduct().setCredit(null);
+                    }
+                }).collect(Collectors.toList());
     }
-
-    private List<Product> getProducts(){
-        ResponseEntity<Product[]> responseEntity = restTemplate.getForEntity(GET_PRODUCTS_URL, Product[].class);
-        return Optional.ofNullable(responseEntity.getBody()).map(Arrays::asList)
-                .orElse(new ArrayList<>());
-    }
-
-    private void aggregateProducts(List<CreditDetails> creditDetails, List<Product> products){
-        creditDetails.forEach(creditDetail -> products.stream()
-                        .filter(product -> product.getCreditId() == creditDetail.getCredit().getId())
-                        .findFirst()
-                        .ifPresent(creditDetail::setProduct));
-    }
-
 }
