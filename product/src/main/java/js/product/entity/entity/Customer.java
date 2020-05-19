@@ -20,8 +20,6 @@ public class Customer {
     @Column
     private String pesel;
 
-//    private Integer creditId;
-
     @OneToOne
     private Credit credit;
 
@@ -64,12 +62,4 @@ public class Customer {
     public void setPesel(String pesel) {
         this.pesel = pesel;
     }
-//
-//    public Integer getCreditId() {
-//        return creditId;
-//    }
-//
-//    public void setCreditId(Integer creditId) {
-//        this.creditId = creditId;
-//    }
 }

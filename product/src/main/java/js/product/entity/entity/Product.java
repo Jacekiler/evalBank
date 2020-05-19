@@ -14,8 +14,6 @@ public class Product {
     @Column
     private String productName;
 
-//    private Integer creditId;
-
     @OneToOne
     private Credit credit;
 
@@ -42,12 +40,4 @@ public class Product {
     public void setProductName(String productName) {
         this.productName = productName;
     }
-
-//    public Integer getCreditId() {
-//        return creditId;
-//    }
-//
-//    public void setCreditId(Integer creditId) {
-//        this.creditId = creditId;
-//    }
 }
