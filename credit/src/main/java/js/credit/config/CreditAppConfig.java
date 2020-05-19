@@ -14,12 +14,17 @@ import java.util.Properties;
 public class CreditAppConfig {
 
     private static final String PACKAGES_TO_SCAN = "js.credit.entity";
-    private static final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=evaluation_demo";
-    private static final String USERNAME = "dbuser";
-    private static final String PASSWORD = "dbuser";
+//    private static final String DRIVER = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+    private static final String DRIVER = "org.postgresql.Driver";
+//    private static final String URL = "jdbc:sqlserver://localhost:1433;databaseName=evaluation_demo";
+    private static final String URL = "jdbc:postgresql://postgresdb:5432/testdb";
+//    private static final String USERNAME = "dbuser";
+//    private static final String PASSWORD = "dbuser";
+    private static final String USERNAME = "postgres";
+    private static final String PASSWORD = "admin";
     private static final String DIALECT_ATTR = "hibernate.dialect";
-    private static final String DIALECT_VALUE = "org.hibernate.dialect.SQLServerDialect";
+//    private static final String DIALECT_VALUE = "org.hibernate.dialect.SQLServerDialect";
+    private static final String DIALECT_VALUE = "org.hibernate.dialect.PostgreSQLDialect";
     private static final String HBM2DDL_ATTR = "hibernate.hbm2ddl.auto";
     private static final String HBM2DDL_VALUE = "update";
     private static final String SHOW_SQL_ATTR = "hibernate.show_sql";

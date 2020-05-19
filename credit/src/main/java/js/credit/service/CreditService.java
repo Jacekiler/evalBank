@@ -22,8 +22,8 @@ import java.util.stream.Collectors;
 @Service
 public class CreditService {
 
-    private static final String BASE_CUSTOMER_URL = "http://localhost:8081/customer/";
-    private static final String BASE_PRODUCT_URL = "http://localhost:8082/product/";
+    private static final String BASE_CUSTOMER_URL = "http://customercontroller:8081/customer/";
+    private static final String BASE_PRODUCT_URL = "http://productcontroller:8082/product/";
     private static final String CREATE_CUSTOMER_URL = BASE_CUSTOMER_URL + "createCustomer";
     private static final String CREATE_PRODUCT_URL = BASE_PRODUCT_URL + "createProduct";
 //    private static final String GET_CUSTOMERS_URL = BASE_CUSTOMER_URL + "getCustomers";
