@@ -4,10 +4,12 @@ import js.product.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Repository
+@Transactional
 public class ProductDaoImpl implements ProductDao {
 
     @Autowired
@@ -19,10 +21,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public Product[] getAll() {
-        List<Product> productList = hibernateTemplate.loadAll(Product.class);
-        Product[] productsArray = new Product[productList.size()];
-        productList.toArray(productsArray);
-        return productsArray;
+    public List<Product> getAll() {
+        return hibernateTemplate.loadAll(Product.class);
     }
 }

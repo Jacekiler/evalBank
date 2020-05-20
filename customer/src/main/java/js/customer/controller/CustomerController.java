@@ -20,7 +20,7 @@ public class CustomerController {
     }
 
     @GetMapping(value = "/getCustomers")
-    public Customer[] getCustomers(){
+    public List<Customer> getCustomers(){
         return customerService.getCustomers();
     }
 

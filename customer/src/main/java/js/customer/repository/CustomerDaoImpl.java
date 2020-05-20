@@ -1,17 +1,16 @@
 package js.customer.repository;
 
 import js.customer.entity.Customer;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Repository
-public class CustomerDaoImpl implements CustomerDao{
+@Transactional
+public class CustomerDaoImpl implements CustomerDao {
 
     @Autowired
     private HibernateTemplate hibernateTemplate;
@@ -22,10 +21,7 @@ public class CustomerDaoImpl implements CustomerDao{
     }
 
     @Override
-    public Customer[] getByIds() {
-        List<Customer> customers = hibernateTemplate.loadAll(Customer.class);
-        Customer[] customersArray = new Customer[customers.size()];
-        customers.toArray(customersArray);
-        return customersArray;
+    public List<Customer> getAll() {
+        return hibernateTemplate.loadAll(Customer.class);
     }
 }

@@ -2,7 +2,7 @@ package js.credit.controller;
 
 import js.credit.model.entity.CreditDetails;
 import js.credit.model.result.dto.CreditDTO;
-import js.credit.service.CreditService;
+import js.credit.service.CreditServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +14,7 @@ import java.util.List;
 public class CreditController {
 
     @Autowired
-    private CreditService creditService;
+    private CreditServiceImpl creditService;
 
     @PostMapping(value = "/createCredit")
     public int createCredit(@Valid @RequestBody CreditDetails creditDetails){

@@ -1,21 +1,12 @@
 package js.product.service;
 
 import js.product.entity.Product;
-import js.product.repository.ProductDao;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
-public class ProductService {
+import java.util.List;
 
-    @Autowired
-    private ProductDao productDao;
+public interface ProductService {
 
-    public int processProduct(Product product){
-        return productDao.save(product);
-    }
+    int processProduct(Product product);
 
-    public Product[] getAllProducts(){
-        return productDao.getAll();
-    }
+    List<Product> getAllProducts();
 }

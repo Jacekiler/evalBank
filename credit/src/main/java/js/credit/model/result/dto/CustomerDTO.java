@@ -4,19 +4,19 @@ import java.io.Serializable;
 
 public class CustomerDTO implements Serializable {
 
-    private final int id;
+    private final Integer id;
     private final String firstName;
     private final String surname;
     private final String pesel;
 
-    public CustomerDTO(int id, String firstName, String surname, String pesel) {
+    public CustomerDTO(Integer id, String firstName, String surname, String pesel) {
         this.id = id;
         this.firstName = firstName;
         this.surname = surname;
         this.pesel = pesel;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
