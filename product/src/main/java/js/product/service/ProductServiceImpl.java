@@ -13,7 +13,7 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductDao productDao;
 
-    public int processProduct(Product product){
+    public int saveProduct(Product product){
         return productDao.save(product);
     }
 

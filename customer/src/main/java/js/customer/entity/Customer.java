@@ -2,22 +2,21 @@ package js.customer.entity;
 
 import javax.persistence.*;
 
+/*
+    Entity for internal REST communication and database storage
+ */
+
 @Entity
-@Table(name = "cu6")
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Integer id;
 
-    @Column
     private String firstName;
 
-    @Column
     private String surname;
 
-    @Column
     private String pesel;
 
     @OneToOne

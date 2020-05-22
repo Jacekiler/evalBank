@@ -2,22 +2,21 @@ package js.product.entity;
 
 import javax.persistence.*;
 
+/*
+    Entity for internal REST communication and database storage
+ */
+
 @Entity
-@Table(name = "cu6")
 public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private int id;
+    private Integer id;
 
-    @Column
     private String firstName;
 
-    @Column
     private String surname;
 
-    @Column
     private String pesel;
 
     @OneToOne
@@ -31,11 +30,11 @@ public class Customer {
         this.credit = credit;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

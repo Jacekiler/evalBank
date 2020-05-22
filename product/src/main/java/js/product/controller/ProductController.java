@@ -16,7 +16,7 @@ public class ProductController {
 
     @PostMapping(value = "/createProduct")
     public int createProduct(@RequestBody Product product){
-        return productService.processProduct(product);
+        return productService.saveProduct(product);
     }
 
     @GetMapping(value = "/getProducts")

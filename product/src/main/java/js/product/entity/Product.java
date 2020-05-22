@@ -2,17 +2,20 @@ package js.product.entity;
 
 import javax.persistence.*;
 
+/*
+    Entity for internal REST communication and database storage
+ */
+
 @Entity
-@Table(name = "pr6")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
-    private int id;
+    private Integer id;
 
-    @Column
     private String productName;
+
+    private Double value;
 
     @OneToOne
     private Credit credit;
@@ -25,12 +28,20 @@ public class Product {
         this.credit = credit;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Double getValue() {
+        return value;
+    }
+
+    public void setValue(Double value) {
+        this.value = value;
     }
 
     public String getProductName() {

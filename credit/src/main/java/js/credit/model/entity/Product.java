@@ -2,17 +2,20 @@ package js.credit.model.entity;
 
 import javax.persistence.*;
 
+/*
+    Entity for internal REST communication and database storage
+ */
+
 @Entity
-@Table(name = "pr6")
 public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Integer id;
 
-    @Column
     private String productName;
+
+    private Double value;
 
     @OneToOne
     private Credit credit;
@@ -31,6 +34,14 @@ public class Product {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Double getValue() {
+        return value;
+    }
+
+    public void setValue(Double value) {
+        this.value = value;
     }
 
     public String getProductName() {

@@ -5,7 +5,7 @@ import js.customer.entity.Customer;
 import java.util.List;
 
 public interface CustomerService {
-     int processCustomer(Customer customer);
+     int saveCustomer(Customer customer);
 
-     List<Customer> getCustomers();
+     List<Customer> getAllCustomers();
 }

@@ -8,34 +8,24 @@ services:
       - postgresdb
       - productcontroller
       - customercontroller
-    links:
-      - postgresdb
-      - customercontroller
-      - productcontroller
-    network_mode: bridge
+
   customercontroller:
     build: "./customer"
     ports:
       - "8081:8081"
     depends_on:
       - postgresdb
-    links:
-      - postgresdb
-    network_mode: bridge
+
   productcontroller:
     build: "./product"
     ports:
       - "8082:8082"
     depends_on:
       - postgresdb
-    links:
-      - postgresdb
-    network_mode: bridge
 
   postgresdb:
     container_name: postgresdb
     image: postgres:latest
-    network_mode: bridge
     environment:
       POSTGRES_DB: "testdb"
       POSTGRES_USER: "postgres"

@@ -16,12 +16,12 @@ public class CustomerController {
 
     @PostMapping(value = "/createCustomer")
     public int createCustomer(@RequestBody Customer customer){
-        return customerService.processCustomer(customer);
+        return customerService.saveCustomer(customer);
     }
 
     @GetMapping(value = "/getCustomers")
     public List<Customer> getCustomers(){
-        return customerService.getCustomers();
+        return customerService.getAllCustomers();
     }
 
 }

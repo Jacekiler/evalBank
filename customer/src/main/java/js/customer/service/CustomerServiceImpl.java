@@ -13,11 +13,11 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerDao customerDao;
 
-    public int processCustomer(Customer customer){
+    public int saveCustomer(Customer customer){
         return customerDao.save(customer);
     }
 
-    public List<Customer> getCustomers(){
+    public List<Customer> getAllCustomers(){
         return customerDao.getAll();
     }
 

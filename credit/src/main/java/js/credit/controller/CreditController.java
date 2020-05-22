@@ -1,7 +1,6 @@
 package js.credit.controller;
 
-import js.credit.model.entity.CreditDetails;
-import js.credit.model.result.dto.CreditDTO;
+import js.credit.model.inout.dto.CreditDetailsDTO;
 import js.credit.service.CreditServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +16,12 @@ public class CreditController {
     private CreditServiceImpl creditService;
 
     @PostMapping(value = "/createCredit")
-    public int createCredit(@Valid @RequestBody CreditDetails creditDetails){
-        return creditService.processCredit(creditDetails);
+    public int createCredit(@Valid @RequestBody CreditDetailsDTO creditDetailsDTO){
+        return creditService.processCredit(creditDetailsDTO);
     }
 
     @GetMapping(value = "/getCredits")
-    public List<CreditDTO> getCredits() {
+    public List<CreditDetailsDTO> getCredits() {
         return creditService.getAllCredits();
     }
 }

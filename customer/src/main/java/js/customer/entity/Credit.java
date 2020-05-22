@@ -2,16 +2,17 @@ package js.customer.entity;
 
 import javax.persistence.*;
 
+/*
+    Entity for internal REST communication and database storage
+ */
+
 @Entity
-@Table(name = "cr6")
 public class Credit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private Integer id;
 
-    @Column
     private String name;
 
     @OneToOne(mappedBy = "credit")

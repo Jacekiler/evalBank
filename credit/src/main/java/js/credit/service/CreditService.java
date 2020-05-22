@@ -1,13 +1,12 @@
 package js.credit.service;
 
-import js.credit.model.entity.CreditDetails;
-import js.credit.model.result.dto.CreditDTO;
+import js.credit.model.inout.dto.CreditDetailsDTO;
 
 import java.util.List;
 
 public interface CreditService {
 
-     int processCredit(CreditDetails creditDetails);
+     int processCredit(CreditDetailsDTO creditDetails);
 
-     List<CreditDTO> getAllCredits();
+     List<CreditDetailsDTO> getAllCredits();
 }

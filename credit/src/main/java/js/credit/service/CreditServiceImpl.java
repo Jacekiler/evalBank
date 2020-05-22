@@ -1,29 +1,24 @@
 package js.credit.service;
 
 import js.credit.model.entity.Credit;
-import js.credit.model.entity.CreditDetails;
 import js.credit.model.entity.Customer;
 import js.credit.model.entity.Product;
-import js.credit.model.result.dto.CreditDTO;
-import js.credit.model.result.dto.mapper.DTOMapper;
+import js.credit.model.inout.dto.CreditDetailsDTO;
+import js.credit.model.inout.dto.mapper.DTOMapper;
+import js.credit.model.inout.dto.mapper.EntityMapper;
 import js.credit.repository.CreditDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CreditServiceImpl implements CreditService {
 
-    private static final String BASE_CUSTOMER_URL = "http://localhost:8081/customer/";
-    private static final String BASE_PRODUCT_URL = "http://localhost:8082/product/";
-//    private static final String BASE_CUSTOMER_URL = "http://customercontroller:8081/customer/";
-//    private static final String BASE_PRODUCT_URL = "http://productcontroller:8082/product/";
-    private static final String CREATE_CUSTOMER_URL = BASE_CUSTOMER_URL + "createCustomer";
-    private static final String CREATE_PRODUCT_URL = BASE_PRODUCT_URL + "createProduct";
+    // Using services names from docker-compose.yml
+    private static final String CREATE_CUSTOMER_URL = "http://customercontroller:8081/customer/createCustomer";
+    private static final String CREATE_PRODUCT_URL = "http://productcontroller:8082/product/createProduct";
 
     @Autowired
     private CreditDao creditDao;
@@ -34,29 +29,35 @@ public class CreditServiceImpl implements CreditService {
     @Autowired
     private DTOMapper dtoMapper;
 
-    public int processCredit(CreditDetails creditDetails){
-        int creditId = creditDao.save(creditDetails.getCredit());
-        Optional<Integer> customerId = createCustomerRequest(creditDetails);
-        Optional<Integer> productId = createProductRequest(creditDetails);
+    @Autowired
+    private EntityMapper entityMapper;
+
+    public int processCredit(CreditDetailsDTO creditDetailsDTO){
+        Credit credit = entityMapper.mapCreditDTOToEntity(creditDetailsDTO.getCreditDTO());
+        int creditId = creditDao.save(credit);
+        createCustomerRequest(credit, entityMapper.mapCustomerDTOToEntity(creditDetailsDTO.getCustomerDTO()));
+        createProductRequest(credit, entityMapper.mapProductDTOToEntity(creditDetailsDTO.getProductDTO()));
         return creditId;
     }
 
-    private Optional<Integer> createCustomerRequest(CreditDetails creditDetails){
-        Customer customer = creditDetails.getCustomer();
-        customer.setCredit(creditDetails.getCredit());
-        ResponseEntity<Integer> customerResponse = restTemplate.postForEntity(CREATE_CUSTOMER_URL, customer, Integer.class);
-        return Optional.ofNullable(customerResponse.getBody());
+    private void createCustomerRequest(Credit credit, Customer customer){
+        customer.setCredit(credit);
+        restTemplate.postForEntity(CREATE_CUSTOMER_URL, customer, Integer.class);
+        System.out.println();
     }
 
-    private Optional<Integer> createProductRequest(CreditDetails creditDetails){
-        Product product = creditDetails.getProduct();
-        product.setCredit(creditDetails.getCredit());
-        ResponseEntity<Integer> productResponse = restTemplate.postForEntity(CREATE_PRODUCT_URL, product, Integer.class);
-        return Optional.ofNullable(productResponse.getBody());
+    private void createProductRequest(Credit credit, Product product){
+        product.setCredit(credit);
+        restTemplate.postForEntity(CREATE_PRODUCT_URL, product, Integer.class);
+        System.out.println();
     }
 
-    public List<CreditDTO> getAllCredits() {
+    /*
+        Because of @OneToOne relation, getting all credits contains all related products and customers as well. No need to send internal requests
+        to Customer's/Product's controller for data.
+     */
+    public List<CreditDetailsDTO> getAllCredits() {
         List<Credit> credits = creditDao.getAll();
-        return dtoMapper.mapCreditDto(credits);
+        return dtoMapper.mapCreditDetailsDTO(credits);
     }
 }

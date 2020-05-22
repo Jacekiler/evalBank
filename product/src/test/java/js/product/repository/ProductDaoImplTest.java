@@ -12,7 +12,7 @@ import java.util.List;
 class ProductDaoImplTest {
 
     private static final String PRODUCT_NAME = "product1";
-
+    private static final Double PRODUCT_VALUE = 25.5;
     @Autowired
     private ProductDao productDao;
 
@@ -30,11 +30,13 @@ class ProductDaoImplTest {
 
     private void validateProduct(Product product){
         Assertions.assertEquals(product.getProductName(), PRODUCT_NAME);
+        Assertions.assertEquals(product.getValue(), PRODUCT_VALUE);
     }
 
     private Product prepareProduct(){
         Product product = new Product();
         product.setProductName(PRODUCT_NAME);
+        product.setValue(PRODUCT_VALUE);
         return product;
     }
 }
