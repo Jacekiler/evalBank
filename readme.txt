@@ -1,4 +1,4 @@
-Project is build with maven. It contains 3 web services as project submodules and a database component. Each one is run as docker containerusing docker-compose.
+Project is build with maven. It contains 3 web services as project submodules and a database component. Each one is run as docker container using docker-compose.
 To run project proceed one of the following options:
 Execute command from base project directory: <project_dir>\EvaluationBank
 a)	1. mvn clean package
