@@ -113,29 +113,36 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>com.dkanejs.maven.plugins</groupId>
-                <artifactId>docker-compose-maven-plugin</artifactId>
-                <version>4.0.0</version>
-                <configuration>
-                    <build>true</build>
-                </configuration>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
                 <executions>
                     <execution>
-                        <id>up</id>
-                        <phase>verify</phase>
+                        <id>mvn-clean-package</id>
                         <goals>
-                            <goal>up</goal>
+                            <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <composeFile>${project.basedir}/docker-compose.yml</composeFile>
+                            <executable>mvn</executable>
+                            <workingDirectory>${project.basedir}</workingDirectory>
+                            <arguments>
+                                <argument>clean</argument>
+                                <argument>package</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>docker-compose</id>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>docker-compose</executable>
+                            <workingDirectory>${project.basedir}</workingDirectory>
+                            <arguments>
+                                <argument>up</argument>
+                                <argument>--build</argument>
+                            </arguments>
                         </configuration>
                     </execution>
                 </executions>

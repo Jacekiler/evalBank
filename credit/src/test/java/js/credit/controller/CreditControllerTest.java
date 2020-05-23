@@ -54,10 +54,12 @@ class CreditControllerTest {
     private static final String CUSTOMER_SURNAME = "Middle";
     private static final String CUSTOMER_PESEL = "93062255555";
 
+    // controller's mappings
     private static final String POST_ADDRESS = "/credit/createCredit";
     private static final String GET_ADDRESS = "/credit/getCredits";
-    private static final String CUSTOMER_URL = "http://customercontroller:8081/customer/createCustomer";
-    private static final String PRODUCT_URL = "http://productcontroller:8082/product/createProduct";
+    // addresses as in docker-compose.yml
+    private static final String CUSTOMER_URL = "http://customercontroller:8091/customer/createCustomer";
+    private static final String PRODUCT_URL = "http://productcontroller:8092/product/createProduct";
 
     @Autowired
     private MockMvc mockMvc;

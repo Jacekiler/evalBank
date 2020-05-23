@@ -1,11 +1,7 @@
 Project is build with maven. It contains 3 web services as project submodules and a database component. Each one is run as docker containerusing docker-compose.
-To run project proceed one of the following options:
+To run project proceed following command.
 Execute command from base project directory: <project_dir>\EvaluationBank
-a)	1. mvn clean package
-	2. mvn verify
-or
-b) 	1. mvn clean package
-	2. docker-compose up --build
+- mvnw exec:exec@mvn-clean-package exec:exec@docker-compose
 
 Project endpoints:
 POST /credit/createCredit		
@@ -13,12 +9,13 @@ GET /credit/getCredits
 POST /customer/createCustomer	
 GET /customer/getCustomers		
 POST /product/createProducts	
-GET /product/getProducts		
+GET /product/getProducts
+Ports from 8090 to 8092 are used to run services.
 
 Customer and Product services are used for internal porposes.
 For creating and reading Credit data first two endpoints are destined.
 
-1. CreateCredit: POST localhost:8080/credit/createCredit
+1. CreateCredit: POST localhost:8090/credit/createCredit
 Incoming requests for saving credit's data require complex data: Credit, Product and Customer information in JSON format. Lack of any of required causes error response.
 Also attributes are required in request (except id)
 Example start data:
@@ -49,7 +46,7 @@ Example start data causing Bad Request response:
 	}
 }
 
-2. GetCredits localhost:8080/credit/getCredits
+2. GetCredits localhost:8090/credit/getCredits
 Use GET method without any parameters to get all credits info.
 
 Output data are in the same format as required input, list of related:

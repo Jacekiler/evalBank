@@ -17,8 +17,8 @@ import java.util.List;
 public class CreditServiceImpl implements CreditService {
 
     // Using services names from docker-compose.yml
-    private static final String CREATE_CUSTOMER_URL = "http://customercontroller:8081/customer/createCustomer";
-    private static final String CREATE_PRODUCT_URL = "http://productcontroller:8082/product/createProduct";
+    private static final String CREATE_CUSTOMER_URL = "http://customercontroller:8091/customer/createCustomer";
+    private static final String CREATE_PRODUCT_URL = "http://productcontroller:8092/product/createProduct";
 
     @Autowired
     private CreditDao creditDao;

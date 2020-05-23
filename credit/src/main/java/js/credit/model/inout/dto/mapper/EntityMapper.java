@@ -8,6 +8,11 @@ import js.credit.model.inout.dto.CustomerDTO;
 import js.credit.model.inout.dto.ProductDTO;
 import org.springframework.stereotype.Component;
 
+/*
+    Mapping entities from external request (no relations between Credit and Product/Customer)
+    into entities for internal communication and database storage (availability of relations)
+ */
+
 @Component
 public class EntityMapper {
 

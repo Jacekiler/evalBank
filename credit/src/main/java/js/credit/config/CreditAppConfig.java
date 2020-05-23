@@ -13,4 +13,5 @@ public class CreditAppConfig {
     public RestTemplate restTemplate(){
         return new RestTemplate();
     }
+
 }

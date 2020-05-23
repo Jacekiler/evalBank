@@ -12,6 +12,11 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/*
+    Mapping entities from internal components communication (with relations between Credit and Product/Customer)
+    into transfer objects for external response (no relations, no loops in JSON response)
+ */
+
 @Component
 public class DTOMapper {
 

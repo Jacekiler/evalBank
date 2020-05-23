@@ -1,7 +1,6 @@
 package js.product.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import js.product.entity.Credit;
 import js.product.entity.Product;
 import js.product.service.ProductService;
 import org.hamcrest.Matchers;
@@ -42,6 +41,9 @@ class ProductControllerTest {
 
     @Autowired
     private ProductService productService;
+
+//    @Autowired
+//    private CreditDao creditDao;
 
     @Test
     void createProduct() throws Exception {
