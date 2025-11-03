@@ -13,7 +13,7 @@ GET /product/getProducts
 
 Services are started on ports 8090-8092
 
-Customer and Product services are used for internal porposes.
+Customer and Product services are used for internal purposes.
 For creating and reading Credit data first two endpoints are destined.
 
 1. CreateCredit: POST localhost:8090/credit/createCredit
